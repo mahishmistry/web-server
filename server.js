@@ -1,6 +1,7 @@
 import express from 'express';
 
 const app = express();
+app.set("view engine", "ejs");
 const PORT = 3000;
 const projects = [
   { name: 'Weather app', tag: 'javascript' },
@@ -19,6 +20,10 @@ app.get('/projects', (req, res) => {
   res.json(filterprojects)
   const sort = name ? projects.sort(projects => projects.tag === tag.toLowerCase()):projects;
   res.json(sort)
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", { title: "About" });
 });
 
 app.listen(PORT, () => {
